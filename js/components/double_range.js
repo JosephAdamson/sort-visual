@@ -8,8 +8,8 @@ const BASE_STYLES = Object.freeze({
 });
 
 const SLIDER_PRESETS = Object.freeze({
-    minBound: 1,
-    maxBound: 121,
+    minBound: 0,
+    maxBound: 100,
     minPreset: 10,
     maxPreset: 50
 });
@@ -28,7 +28,7 @@ template.innerHTML = `
         display: inline-block;
         position: relative;
         width: 100%;
-        min-width: 300px;
+        min-width: 200px;
         height: 20px;
     }
 

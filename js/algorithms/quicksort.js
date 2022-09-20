@@ -1,4 +1,4 @@
-import { delay } from "../utils.js";
+import { delay } from "../utils/helper.js";
 import { swap, ripple } from "../sortvisual.js";
 
 
@@ -21,26 +21,36 @@ async function partition(arr, left, right, ticks){
     // before the sort. Ensures an higher probability of O(n log n) performance
     // even in the case of a presorted array (which would otherwise by O(n^2).
     const randIndex = Math.floor(left + Math.random() * (right - left + 1) );
-    arr[randIndex].style.backgroundColor = "purple";
-    arr[randIndex].style.backgroundColor = "cyan";
+    arr[randIndex].style.backgroundColor = "red";
+    arr[right].style.bacjgroundColor = "red";
+    await delay(ticks);
     swap(arr, randIndex, right);
-    arr[right].style.backgroundColor = "purple";
+    arr[right].style.backgroundColor = "cyan";
+    arr[randIndex].style.backgroundColor = "cyan";
     const pivot = parseInt(arr[right].style.height);
     let i = left - 1;
 
     for (let j = left; j < right; j++) {
-        arr[j].style.backgroundColor = "red";
         await delay(ticks / 8);
         if (parseInt(arr[j].style.height) <= pivot) {
             i++;
+
+         
+            arr[j].style.backgroundColor = "red";
+            arr[i].style.backgroundColor = "red";
+            await delay(ticks);
             swap(arr, i, j);
+            arr[j].style.backgroundColor = "cyan";
+            arr[i].style.backgroundColor = "cyan";
         }
     }
-    swap(arr, i + 1, right);
-    await delay(ticks);
-    arr[i + 1].style.backgroundColor = "purple";
+    arr[i + 1].style.backgroundColor = "red";
     arr[right].style.backgroundColor = "red";
-    await ripple(arr, ticks / 10, "cyan");
+    await delay(ticks);
+    swap(arr, i + 1, right);
+    arr[i + 1].style.backgroundColor = "cyan";
+    arr[right].style.backgroundColor = "cyan";
+    await ripple(arr, ticks / 20, "cyan");
     return i + 1;
 }
 

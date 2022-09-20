@@ -1,4 +1,4 @@
-import { delay } from "../utils.js";
+import { delay } from "../utils/helper.js";
 import { ripple } from "../sortvisual.js";
 
 /*

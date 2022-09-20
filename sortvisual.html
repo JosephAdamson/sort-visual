@@ -7,36 +7,71 @@
     <title>Sort-Visual</title>
     <!-- styles -->
     <link rel="stylesheet" href="sortvisual.css">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link 
+        ref="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Source+Code+Pro&display=swap" 
+        rel="stylesheet"
+    >
 </head>
 <body>
+    <div class="banner">
+        <h1>Sorting Visualizer</h1>
+    </div>
     <nav class="nav-bar">
         <div class="nav-bar__button-container">
-            <button class="btn" id="play-btn">visualize</button>
-            <button class="btn" id="generate-array-btn">new array</button>
+            <button class="nav-bar__button-container__btn" id="play-btn">visualize</button>
+            <button class="nav-bar__button-container__btn" id="generate-array-btn">new array</button>
         </div>
         <div class="nav-bar__slider-container">
+            <double-range min-bound=1 max-bound=85 id="elem-range"></double-range>
             <label>range</label>
-            <double-range id="elem-range"></double-range>
         </div>
         <div class="nav-bar__slider-container">
-            <label>size</label>
             <input type="range" min="1" max="101" value="20" step=10 id="size-slider">
+            <label>size</label>
         </div>
         <div class="nav-bar__slider-container">
-            <label>speed</label>
             <input type="range" min="1" max="20" value="5" id="speed-slider">
+            <label>speed</label>
         </div>
-        <select class="algo-options" id="algo-options">
-            <option>selection sort</option>
-            <option>merge sort</option>
-            <option>quick sort</option>
-            <option>gnome sort</option>
-            <option>insertion sort</option>
-            <option>heap sort</option>
-        </select>
+        <div class="nav-bar__algo_options-container">
+            <label class="container__label">algorithm #1</label>
+            <select class="algo_options-container__select" id="algo-options-1">
+                <option>selection sort</option>
+                <option>merge sort</option>
+                <option>quick sort</option>
+                <option>gnome sort</option>
+                <option>insertion sort</option>
+                <option>heap sort</option>
+            </select>
+        </div>
+        <div class="toggle-container">
+            <label class="container__label">dual</label>
+            <button class="toggle-container__btn" id="toggle-btn">
+                <span>on</span>
+                <span>off</span>
+                <span class="toggle-container__slider" id="toggle-btn-slider"></span>
+            </button>
+        </div>
+        <div class="nav-bar__algo_options-container">
+            <label class="container__label">algorithm #2</label>
+            <select class="algo_options-container__select" id="algo-options-2">
+                <option>selection sort</option>
+                <option>merge sort</option>
+                <option>quick sort</option>
+                <option>gnome sort</option>
+                <option>insertion sort</option>
+                <option>heap sort</option>
+            </select>
+        </div>
         <div class="modal-overlay" id="modal-overlay"></div>
     </nav>
-    <div class="array-canvas" id="array-canvas"></div>
+    <div class="canvas-container">
+        <div class="canvas-container__array-canvas" id="array-canvas-1"></div>
+        <div class="canvas-container__array-canvas" id="array-canvas-2"></div>
+    </div>
     <script type="module" src="js/sortvisual.js"></script>
 </body>
 </html>
