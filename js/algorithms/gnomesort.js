@@ -18,19 +18,19 @@ async function gnomeSort(arr, ticks){
     while (pos < N) {
         if (pos == 0 || 
             parseInt(arr[pos].style.height) >= parseInt(arr[pos - 1].style.height)) {
-            arr[pos].style.backgroundColor = "red";
+            arr[pos].style.backgroundColor = "#E06C75";
             await delay(ticks);
-            arr[pos].style.backgroundColor = "cyan";
+            arr[pos].style.backgroundColor = "#61AFEF";
             pos++;
         } else {
             swap(arr, pos, pos - 1)
-            arr[pos].style.backgroundColor = "red";
+            arr[pos].style.backgroundColor = "#E06C75";
             await delay(ticks);
-            arr[pos].style.backgroundColor = "cyan";
+            arr[pos].style.backgroundColor = "#61AFEF";
             pos--;
         }
     }
-    await ripple(arr, ticks / 2, "lime");
+    await ripple(arr, ticks / 2, "#98C379");
 }
 
 export { gnomeSort };

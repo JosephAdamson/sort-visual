@@ -15,7 +15,7 @@ for a total complexity of O(n log n).
 async function mergeSort(arr , ticks){
     await splitHelper(arr, 0, arr.length - 1, ticks);
     await delay(ticks);
-    await ripple(arr, ticks / 2, "lime");
+    await ripple(arr, ticks / 2, "#98C379");
 }
 
 /*
@@ -56,7 +56,7 @@ async function mergeHelper(arr, left, mid, right, ticks) {
 
     let k = left;
 
-    ripple(arr.slice(left, right + 1), ticks, "red");
+    ripple(arr.slice(left, right + 1), ticks, "#E06C75");
     while (i <= mid && j <= right ) {
         
         if (copy[i] <= copy[j]) {
@@ -74,7 +74,7 @@ async function mergeHelper(arr, left, mid, right, ticks) {
         arr[k++].style.height = `${copy[j++]}px`;
     }
     await delay(ticks);
-    ripple(arr.slice(left, right + 1), ticks / 2, "cyan");
+    ripple(arr.slice(left, right + 1), ticks / 2, "#61AFEF");
 
 }
 

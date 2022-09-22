@@ -1,8 +1,8 @@
 // A stab at a minimal double range slider component
 
 const BASE_STYLES = Object.freeze({
-    sliderTrackColor: "#f5f2f2",
-    sliderFillColor: "#3264fe",
+    sliderTrackColor: "#383e4a",
+    sliderFillColor: "#126eba",
     sliderTrackBorderColor: "#aba9a9",
     sliderBorderRadius:  "5rem",
 });
@@ -34,7 +34,7 @@ template.innerHTML = `
 
     .slider-track {
         width: 99%;
-        height: 6px;
+        height: 2px;
         position: absolute;
         margin: auto;
         top: 0;
@@ -74,16 +74,17 @@ template.innerHTML = `
     .slider-container>input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
         margin-top: -6px;
-        height: 1.2em;
-        width: 1.2em;
-        background-color: ${BASE_STYLES.sliderFillColor};
+        height: 1rem;
+        width: 0.6rem;
+        border: 1px solid #686d73;
+        border-radius: 5rem;
+        background-color: #686d73;
         cursor: pointer;
         pointer-events: auto;
-        border-radius: 50%;
     }
 
     .slider-container>input[type="range"]::-webkit-slider-thumb:hover {
-        filter: brightness(0.90);
+        filter: brightness(1.2);
     }
 
     .slider-container>input[type="range"]::-moz-range-thumb {
@@ -98,7 +99,7 @@ template.innerHTML = `
     }
 
     .slider-container>input[type="range"]::-moz-range-thumb:hover {
-        filter: brightness(0.90);
+        filter: brightness(1.2);
     }
 </style>
 

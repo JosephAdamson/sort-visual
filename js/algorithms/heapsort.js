@@ -16,7 +16,7 @@ async function heapSort(arr, ticks) {
         await heapify(arr, N, i, ticks);
     }
 
-    await ripple(arr, ticks / 4, "orange");
+    await ripple(arr, ticks / 4, "#FF9966");
 
     // 'remove' highest element at the top of the heap (arr[0]) by swapping
     // it with the deepest element lowest element (ith) in the heap
@@ -24,10 +24,10 @@ async function heapSort(arr, ticks) {
     for (let i = N - 1; i > 0; i--) {
         await delay(ticks * 2);
         swap(arr, i, 0);
-        arr[i].style.backgroundColor = "cyan";
+        arr[i].style.backgroundColor = "#61AFEF";
         await heapify(arr, i, 0, ticks);
     }
-    await ripple(arr, ticks / 2, "lime");
+    await ripple(arr, ticks / 2, "#98C379");
 }
 
 /*

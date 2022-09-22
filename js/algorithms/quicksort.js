@@ -4,7 +4,7 @@ import { swap, ripple } from "../sortvisual.js";
 
 async function quickSort(arr, ticks) {
     await quickSortUtil(arr, 0, arr.length -1, ticks);
-    ripple(arr, ticks / 2, "lime");
+    ripple(arr, ticks / 2, "#98C379");
 }
 
 async function quickSortUtil(arr, left, right, ticks){
@@ -21,36 +21,36 @@ async function partition(arr, left, right, ticks){
     // before the sort. Ensures an higher probability of O(n log n) performance
     // even in the case of a presorted array (which would otherwise by O(n^2).
     const randIndex = Math.floor(left + Math.random() * (right - left + 1) );
-    arr[randIndex].style.backgroundColor = "red";
-    arr[right].style.bacjgroundColor = "red";
-    await delay(ticks);
+    arr[randIndex].style.backgroundColor = "#E06C75";
+    arr[right].style.bacjgroundColor = "#E06C75";
+    await delay(ticks / 8);
     swap(arr, randIndex, right);
-    arr[right].style.backgroundColor = "cyan";
-    arr[randIndex].style.backgroundColor = "cyan";
+    arr[right].style.backgroundColor = "#61AFEF";
+    arr[randIndex].style.backgroundColor = "#61AFEF";
     const pivot = parseInt(arr[right].style.height);
     let i = left - 1;
 
     for (let j = left; j < right; j++) {
-        await delay(ticks / 8);
+        await delay(ticks / arr.length);
         if (parseInt(arr[j].style.height) <= pivot) {
             i++;
 
          
-            arr[j].style.backgroundColor = "red";
-            arr[i].style.backgroundColor = "red";
+            arr[j].style.backgroundColor = "#E06C75";
+            arr[i].style.backgroundColor = "#E06C75";
             await delay(ticks);
             swap(arr, i, j);
-            arr[j].style.backgroundColor = "cyan";
-            arr[i].style.backgroundColor = "cyan";
+            arr[j].style.backgroundColor = "#61AFEF";
+            arr[i].style.backgroundColor = "#61AFEF";
         }
     }
-    arr[i + 1].style.backgroundColor = "red";
-    arr[right].style.backgroundColor = "red";
+    arr[i + 1].style.backgroundColor = "#E06C75";
+    arr[right].style.backgroundColor = "#E06C75";
     await delay(ticks);
     swap(arr, i + 1, right);
-    arr[i + 1].style.backgroundColor = "cyan";
-    arr[right].style.backgroundColor = "cyan";
-    await ripple(arr, ticks / 20, "cyan");
+    arr[i + 1].style.backgroundColor = "#61AFEF";
+    arr[right].style.backgroundColor = "#61AFEF";
+    //await ripple(arr, ticks / 50, "cyan");
     return i + 1;
 }
 

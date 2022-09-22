@@ -22,6 +22,7 @@ const algoOptionsTwo = document.querySelector("#algo-options-2");
 const togglebtn = document.querySelector("#toggle-btn");
 const togglebtnSlider = document.querySelector("#toggle-btn-slider")
 const modalOverlay = document.querySelector("#modal-overlay");
+const sliderlabels = document.querySelectorAll(".slider-label");
 
 // Gloabl attributes
 let sliderPrev = sizeSlider.value;
@@ -191,7 +192,6 @@ const swap = (arr, a, b) => {
 
 /*
 
-
 @param {HTMLElement} canvas An object representing the array canvas. 
 @param {String}      algo   Algorithm to be executed 
 */
@@ -203,8 +203,16 @@ const executeAlgo = async (canvas, algo) => {
 // ======= WIRE DOM ========
 window.addEventListener("DOMContentLoaded", () => {
     renderArrayCanvas({canvas: arrayCanvasOne, n: null, arr: null});
+    sliderlabels.forEach((label) => {
+        label.insertAdjacentHTML("beforebegin", `<span class="bubble" style=>${label.children[0].value}</span>`);
+    });
+    // set up initial position of range display 'bubbles'
+    setBubblePos(sizeSlider);
+    setBubblePos(speedSlider);
 });
 
+
+// change window dimensions
 window.addEventListener('resize', () => {
     alterBarDimensions(arrayCanvasOne);
     if (dualMode) {
@@ -212,6 +220,8 @@ window.addEventListener('resize', () => {
     }
 });
 
+// double range bar sets the upper and lower bound for values
+// displayed on the canvas
 doubleRange.oninput = function() {
     refreshArrayCanvas(arrayCanvasOne);
     if (dualMode) {
@@ -219,7 +229,40 @@ doubleRange.oninput = function() {
     };
 }
 
-sizeSlider.oninput = function() {
+/*
+Wrapper class for setbubble pos, allows us to get DOM object from
+event independently.
+
+@param {Event} Dom event object
+*/
+const bubbleListener = (e) => {
+    setBubblePos(e.currentTarget);
+}
+
+// add define and add generic listners for normal sliders
+/*
+Update position and content of bubble display above a given range slider.
+
+@param {HTMLElement} targSlider Slider element adjacent to the output bubble.
+*/
+const setBubblePos = (targSlider) => {
+    // had to hard-code this value
+    const halfThumbwidth = 27.4 / 2;
+    console.log(targSlider);
+    // bubble element added last on page load
+    const bubble = targSlider.parentNode.parentNode.children[0];
+    const interval = parseInt(targSlider.max) - parseInt(targSlider.min);
+    const percent = ((parseInt(targSlider.value) - parseInt(targSlider.min)) / interval) * 100;
+    //const offset = Math.abs((thumbWidth / 2));
+    const offset = (halfThumbwidth / 2) + ((halfThumbwidth/100) * percent); 
+    bubble.style.left = `calc(${percent}% - ${offset}px)`;
+    bubble.textContent = targSlider.value;
+
+}
+
+// change the amount of elements on the canvas
+sizeSlider.oninput = function(e) {
+    bubbleListener(e);
     if (sizeSlider.value > sliderPrev) {
         clearCanvas(arrayCanvasOne);
         renderArrayCanvas({canvas: arrayCanvasOne, n: sizeSlider.value, arr: null});
@@ -242,6 +285,9 @@ sizeSlider.oninput = function() {
     sliderPrev = sizeSlider.value;
 }
 
+speedSlider.oninput = bubbleListener;
+
+// refresh array on display
 generateArrayBtn.addEventListener("click", () => {
     refreshArrayCanvas(arrayCanvasOne);
     if (dualMode) {
@@ -249,15 +295,13 @@ generateArrayBtn.addEventListener("click", () => {
     }
 });
 
-/*
-Modal overlay disables UI buttons and sliders whilst vizualization
-is taking place 
-*/
+//Modal overlay disables UI buttons and sliders whilst vizualization
+//is taking place 
 const toggleModal = () => {
     modalOverlay.classList.toggle("modal-overlay-show");
-    console.log("OK");
 }
 
+// execute sort animation event
 playBtn.addEventListener("click",  async () => {
     toggleModal();
     await Promise.all([
@@ -267,6 +311,7 @@ playBtn.addEventListener("click",  async () => {
     toggleModal();
 });
 
+// pick which algos you want to see animated
 algoOptionsOne.addEventListener("change", () => {
     refreshArrayCanvas(arrayCanvasOne);
 });
@@ -277,11 +322,12 @@ algoOptionsTwo.addEventListener("change", () => {
     }
 })
 
+// Pick between one or two arrays
 togglebtn.addEventListener("click", () => {
     if (!dualMode) {
         togglebtnSlider.classList.add("toggle-container__slider-slide");
         const copy =  canvasToArray(arrayCanvasOne);
-        renderArrayCanvas({canvas: arrayCanvasTwo, n: sizeSlider.value, arr: copy});
+        renderArrayCanvas({canvas: arrayCanvasTwo, n: copy.length, arr: copy});
         dualMode = true;
     } else {
         togglebtnSlider.classList.remove("toggle-container__slider-slide");

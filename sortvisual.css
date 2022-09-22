@@ -10,6 +10,7 @@ Variables
     --gap-primary: 0.8rem;
     --gap-secondary: 1rem;
     --font-size-primary: 1rem;
+    --font-size-secondary: 0.8rem;
     --radius-primary: 5rem;
     --radius-secondary: 0.2rem;
     --clr-light-grey: #dbdbdb;
@@ -20,10 +21,13 @@ Variables
     --clr-grey: #686d73;
     --clr-red: #E06C75;
     --clr-yellow: #E5C07B;
+    --clr-orange: #ff9966;
     --clr-green: #98C379;
     --clr-blue: #61AFEF;
+    --clr-blue-dark: #126eba;
     --clr-purple: #C678DD;
     --clr-teal: #56B6C2;
+    --focus-color: rgba(39, 191, 245, 0.5);
     --font-primary: 'Rubik', sans-serif;
     --font-secondary: 'Source Code Pro', monospace;
 }
@@ -51,6 +55,8 @@ button {
 }
 
 label {
+    display: flex;
+    flex-direction: column;
     text-align: left;
     justify-content: center;
     text-transform: capitalize;
@@ -72,6 +78,39 @@ span {
 
 option {
     text-transform: capitalize;
+}
+
+input[type="range"] {
+    /* override deafault appearance */
+    appearance: none;
+    height: 2px;
+    border-radius: var(--radius-primary);
+    margin-top: 0.5rem;
+    margin-bottom: 0.6rem;
+    background-color: var(--background-clr-primary-light);
+}
+
+input[type=range]::-webkit-slider-thumb {
+    appearance: none;
+    height: 1rem;
+    width: 0.6rem;
+    background-color: var(--clr-grey);
+    border: 1px solid var(--clr-grey);
+    border-radius: var(--radius-primary);
+}
+
+input[type=range]::-moz-range-thumb {
+    appearance: none;
+    height: 1rem;
+    width: 0.6rem;
+    background-color: var(--clr-grey);
+    border: 1px solid var(--clr-grey);
+    border-radius: var(--radius-primary);
+}
+
+input[type=range]:hover {
+    filter: brightness(1.2);
+    cursor: pointer;
 }
 
 ::-webkit-scrollbar {
@@ -134,7 +173,7 @@ Sort-Visual styles
 }
 
 .nav-bar__button-container__btn:focus {
-    outline: 2px solid var(--clr-blue);
+    outline: 2px solid var(--focus-color);
 }
 
 .nav-bar__slider-container {
@@ -145,9 +184,31 @@ Sort-Visual styles
     margin-left: 1rem;
 }
 
-.container__label {
+.bubble {
+    position: relative;
+    display: inline-block;
     text-align: center;
-    font-size: 0.9rem;
+    padding-top: 0.4rem;
+    font-size: var(--font-size-secondary);
+    background-color: var(--clr-blue-dark);
+    color: white;
+    height: 1.8rem;
+    width: 1.8rem;
+    margin-bottom: 0.5rem;
+    border-radius: var(--radius-primary);
+}
+
+.bubble:before {
+    content: "\25bc";
+    position: absolute;
+    top: 22px;
+    left: 10px;
+    color: var(--clr-blue-dark);
+}
+
+.algo_options-container__label {
+    text-align: center;
+    font-size: var(--font-size-secondary);
     color: var(--background-clr-primary-light)
 }
 
@@ -191,6 +252,8 @@ Sort-Visual styles
 }
 
 .toggle-container__btn span {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-secondary);
     padding: 0.5rem;
 }
 
@@ -200,7 +263,7 @@ Sort-Visual styles
     width: 50%;
     height: 1rem;
     margin: 0;
-    background-color: var(--clr-blue);
+    background-color: var(--clr-blue-dark);
     border: transparent;
     border-radius: 1rem;
     transition: all 0.3s linear;
@@ -222,12 +285,13 @@ Sort-Visual styles
     display: flex;
     justify-content: center;
     min-width: 50%;
+    min-height: 50%;
     gap: 0.5%;
     padding: 0.5rem;
 }
 
 .bar {
-    background-color: cyan;
+    background-color: var(--clr-blue);
     border-radius: var(--radius-secondary);
 }
 
