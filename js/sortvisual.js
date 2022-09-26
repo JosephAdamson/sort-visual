@@ -311,7 +311,7 @@ playBtn.addEventListener("click",  async () => {
         executeAlgo(arrayCanvasOne, algoOptionsOne.value),
         executeAlgo(arrayCanvasTwo, algoOptionsTwo.value)]
         );
-    document.onkeydown = () => {return true}
+    document.onkeydown = () => {return true;}
     toggleModal();
 });
 
