@@ -4,16 +4,16 @@ import { swap, ripple } from "../sortvisual.js";
 /*
 Creates a binary max heap from an array, then performs n
 successive 'delete' operations re-heapifying the sub array each
-time (O(log n)) for a total complexity of O(n * log g).
+time (O(log n)) for a total complexity of O(n log n).
 
 @param {Array} arr An array of size N.
 */
 async function heapSort(arr, ticks) {
-    const N = arr.length;
+    const n = arr.length;
 
     // create initial max heap
-    for (let i = Math.floor(N / 2) - 1; i >= 0; i--) {
-        await heapify(arr, N, i, ticks);
+    for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+        await heapify(arr, n, i, ticks);
     }
 
     await ripple(arr, ticks / 4, "#FF9966");
@@ -21,7 +21,7 @@ async function heapSort(arr, ticks) {
     // 'remove' highest element at the top of the heap (arr[0]) by swapping
     // it with the deepest element lowest element (ith) in the heap
     // can miss the final interation @ index 0
-    for (let i = N - 1; i > 0; i--) {
+    for (let i = n - 1; i > 0; i--) {
         await delay(ticks * 2);
         swap(arr, i, 0);
         arr[i].style.backgroundColor = "#61AFEF";

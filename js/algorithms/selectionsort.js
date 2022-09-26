@@ -9,16 +9,16 @@ a total time complexity of O(n^2).
 @param {Number} delay Time delay in milliseconds.
 */
 async function selectionSort(arr, ticks){
-    const N = arr.length;
+    const n = arr.length;
 
-    for (let i = 0; i < N - 1; i++) {
+    for (let i = 0; i < n - 1; i++) {
         let min = i;
         await delay(ticks);
         arr[i].style.backgroundColor = "#FF9966";
 
         // inner loop starts at i + 1 fencing off the sorted portion
         // of the array (< i) from the unsorted part.
-        for (let j = i + 1; j < N; j++) {
+        for (let j = i + 1; j < n; j++) {
             if (parseInt(arr[j].style.height) < parseInt(arr[min].style.height)) {
                 min = j;
             }

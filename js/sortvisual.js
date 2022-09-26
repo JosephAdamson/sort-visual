@@ -55,7 +55,7 @@ const renderArrayCanvas = (options) => {
     const arr = options.arr || generateArray(n, start, end);
 
     if (!canvas) {
-        throw new Error("Canvas not provided");
+        throw new Error("Array canvas not provided");
     }
     let heightMultiplier;
     let widthMultiplier;
@@ -74,7 +74,9 @@ const renderArrayCanvas = (options) => {
 }
 
 /*
-Allows for in place dynamic resizing of bars on the canvas. 
+Allows for in place dynamic resizing of bars on the canvas.
+
+@param {HTMLElement} canvas An object representing the array canvas.
 */
 const alterBarDimensions = (canvas) => {
     if (typeof(canvas) !== "object") {
@@ -144,11 +146,18 @@ Refresh array canvas.
 
 @param {HTMLElement} canvas An object representing the array canvas.
 */
-const refreshArrayCanvas = (canvas) => {
-    if (typeof(canvas) !== "object") {
+const refreshArrayCanvas = (options) => {
+    if (typeof(options) !== "object") {
         throw new Error("function argument must be an object");
     }
-    const n = document.querySelectorAll(`[arr-id="${canvas.id}"]`).length;
+    const canvas = options.canvas || null;
+    const n = options.n || document.querySelectorAll(`[arr-id="${canvas.id}"]`).length;
+
+    if (!canvas) {
+        throw new Error("Array canvas not provided");
+    }
+
+    //const n = document.querySelectorAll(`[arr-id="${canvas.id}"]`).length;
     clearCanvas(canvas);
     renderArrayCanvas({canvas: canvas, n: n, arr: null});
 }
@@ -161,7 +170,7 @@ const isColor = (strColor) => {
 }
 
 /*
-Create color change ripple effect on bars
+Create color change ripple effect on bars.
 
 @param {Array}  arr   Array to be manipulated.
 @param {Number} ticks The time delay in milliseconds.
@@ -178,11 +187,11 @@ const ripple = async (arr, ticks, strColor) => {
 }
 
 /*
-Swap the heights of two elements in a DOM element array
+Swap the heights of two elements in a DOM element array.
 
-@param {Array}  arr Array to be manipulated
-@param {Number} a   Index of first element to be swapped
-@param {Number} b   Index of seacond element to be swapped
+@param {Array}  arr Array to be manipulated.
+@param {Number} a   Index of first element to be swapped.
+@param {Number} b   Index of seacond element to be swapped.
 */
 const swap = (arr, a, b) => {
     const temp = arr[a].style.height;
@@ -191,6 +200,7 @@ const swap = (arr, a, b) => {
 }
 
 /*
+Allow multiple sort algorithms to be executed asyncronously.
 
 @param {HTMLElement} canvas An object representing the array canvas. 
 @param {String}      algo   Algorithm to be executed 
@@ -202,6 +212,7 @@ const executeAlgo = async (canvas, algo) => {
 
 // ======= WIRE DOM ========
 window.addEventListener("DOMContentLoaded", () => {
+    // add display bubbles above sliders
     renderArrayCanvas({canvas: arrayCanvasOne, n: null, arr: null});
     sliderlabels.forEach((label) => {
         label.insertAdjacentHTML("beforebegin", `<span class="bubble" style=>${label.children[0].value}</span>`);
@@ -211,8 +222,6 @@ window.addEventListener("DOMContentLoaded", () => {
     setBubblePos(speedSlider);
 });
 
-
-// change window dimensions
 window.addEventListener('resize', () => {
     alterBarDimensions(arrayCanvasOne);
     if (dualMode) {
@@ -223,9 +232,9 @@ window.addEventListener('resize', () => {
 // double range bar sets the upper and lower bound for values
 // displayed on the canvas
 doubleRange.oninput = function() {
-    refreshArrayCanvas(arrayCanvasOne);
+    refreshArrayCanvas({canvas: arrayCanvasOne, n: null});
     if (dualMode) {
-        refreshArrayCanvas(arrayCanvasTwo);
+        refreshArrayCanvas({canvas: arrayCanvasTwo, n: null});
     };
 }
 
@@ -239,7 +248,6 @@ const bubbleListener = (e) => {
     setBubblePos(e.currentTarget);
 }
 
-// add define and add generic listners for normal sliders
 /*
 Update position and content of bubble display above a given range slider.
 
@@ -248,12 +256,10 @@ Update position and content of bubble display above a given range slider.
 const setBubblePos = (targSlider) => {
     // had to hard-code this value
     const halfThumbwidth = 27.4 / 2;
-    console.log(targSlider);
     // bubble element added last on page load
     const bubble = targSlider.parentNode.parentNode.children[0];
     const interval = parseInt(targSlider.max) - parseInt(targSlider.min);
     const percent = ((parseInt(targSlider.value) - parseInt(targSlider.min)) / interval) * 100;
-    //const offset = Math.abs((thumbWidth / 2));
     const offset = (halfThumbwidth / 2) + ((halfThumbwidth/100) * percent); 
     bubble.style.left = `calc(${percent}% - ${offset}px)`;
     bubble.textContent = targSlider.value;
@@ -264,22 +270,18 @@ const setBubblePos = (targSlider) => {
 sizeSlider.oninput = function(e) {
     bubbleListener(e);
     if (sizeSlider.value > sliderPrev) {
-        clearCanvas(arrayCanvasOne);
-        renderArrayCanvas({canvas: arrayCanvasOne, n: sizeSlider.value, arr: null});
+        refreshArrayCanvas({canvas: arrayCanvasOne, n: sizeSlider.value});
 
         if (dualMode) {
-            clearCanvas(arrayCanvasTwo);
-            renderArrayCanvas({canvas: arrayCanvasTwo, n: sizeSlider.value, arr: null});
+            refreshArrayCanvas({canvas: arrayCanvasTwo, n: sizeSlider.value});
         }
     }
             
     if (sizeSlider.value < sliderPrev)    {
-        clearCanvas(arrayCanvasOne);
-        renderArrayCanvas({canvas: arrayCanvasOne, n: sizeSlider.value, arr: null})
+        refreshArrayCanvas({canvas: arrayCanvasOne, n: sizeSlider.value})
 
         if (dualMode) {
-            clearCanvas(arrayCanvasTwo);
-            renderArrayCanvas({canvas: arrayCanvasTwo, n: sizeSlider.value, arr: null});
+            refreshArrayCanvas({canvas: arrayCanvasTwo, n: sizeSlider.value});
         }
     }
     sliderPrev = sizeSlider.value;
@@ -289,14 +291,14 @@ speedSlider.oninput = bubbleListener;
 
 // refresh array on display
 generateArrayBtn.addEventListener("click", () => {
-    refreshArrayCanvas(arrayCanvasOne);
+    refreshArrayCanvas({canvas: arrayCanvasOne, n: null});
     if (dualMode) {
-        refreshArrayCanvas(arrayCanvasTwo);
+        refreshArrayCanvas({canvas: arrayCanvasTwo, n: null});
     }
 });
 
-//Modal overlay disables UI buttons and sliders whilst vizualization
-//is taking place 
+// Modal overlay disables UI buttons and sliders whilst vizualization
+// is taking place 
 const toggleModal = () => {
     modalOverlay.classList.toggle("modal-overlay-show");
 }
@@ -313,12 +315,12 @@ playBtn.addEventListener("click",  async () => {
 
 // pick which algos you want to see animated
 algoOptionsOne.addEventListener("change", () => {
-    refreshArrayCanvas(arrayCanvasOne);
+    refreshArrayCanvas({canvas: arrayCanvasOne, n: null});
 });
 
 algoOptionsTwo.addEventListener("change", () => {
     if (dualMode) {
-        refreshArrayCanvas(arrayCanvasTwo);
+        refreshArrayCanvas({canvas: arrayCanvasTwo, n: null});
     }
 })
 

@@ -5,9 +5,8 @@ import { ripple } from "../sortvisual.js";
 Method takes an array of size n and recursively partitions
 it util we get n singleton arrays. Each array is subsequently
 merged with its neighbour. For an array of size n this happens
-log n times with each merge operation costing O(n) for a total
-complexity of O(1) * O(log n) (partitions) + O(n) * (log n) (merges)
-for a total complexity of O(n log n). 
+log n times with each merge operation costing O(n), for a total
+complexity of O(1) * O(log n) (partition) + O(n) (merge) * (log n) = O(n log n). 
 
 @param {Array}  arr   Array of size N.
 @param {Number} ticks Time delay in milliseconds.

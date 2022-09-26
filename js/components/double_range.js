@@ -117,7 +117,7 @@ class DoubleRange extends HTMLElement {
         // encapsulatead part of the web component
         this.shadow = this.attachShadow({mode: "open"});
 
-        //allows us to acces the shadom DOM via the shadow root
+        // allows us to acces the shadom DOM via the shadow root
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
@@ -158,7 +158,7 @@ class DoubleRange extends HTMLElement {
     }
 
     /*
-    HTMLElement life-cycle override method register changes to element attributes, 
+    HTMLElement life-cycle override method register changes to element attributes. 
 
     @param {String} attribute Element attribute to change.
     @param {String} oldValue  Current attribute value.
@@ -206,7 +206,7 @@ class DoubleRange extends HTMLElement {
     }
 
     /*
-    Event listener for cunstom range slider
+    Event listener for custom range slider
 
     @param {Event} e Range slider oninput event.
     */
