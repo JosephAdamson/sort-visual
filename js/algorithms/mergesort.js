@@ -14,7 +14,7 @@ complexity of O(1) * O(log n) (partition) + O(n) (merge) * (log n) = O(n log n).
 async function mergeSort(arr , ticks){
     await splitHelper(arr, 0, arr.length - 1, ticks);
     await delay(ticks);
-    await ripple(arr, ticks / 4, "#98C379");
+    await ripple(arr, ticks / 2, "#98C379");
 }
 
 /*
