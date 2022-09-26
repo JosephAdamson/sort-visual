@@ -32,7 +32,7 @@ async function selectionSort(arr, ticks){
         arr[i].style.backgroundColor = "#61AFEF";
         arr[min].style.backgroundColor = "#61AFEF";
     }
-    ripple(arr, ticks / 2, "#98C379");
+    ripple(arr, ticks / 4, "#98C379");
 }
 
 export { selectionSort }

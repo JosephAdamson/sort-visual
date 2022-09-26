@@ -4,7 +4,7 @@ import { swap, ripple } from "../sortvisual.js";
 
 async function quickSort(arr, ticks) {
     await quickSortUtil(arr, 0, arr.length -1, ticks);
-    ripple(arr, ticks / 2, "#98C379");
+    ripple(arr, ticks / 4, "#98C379");
 }
 
 async function quickSortUtil(arr, left, right, ticks){
