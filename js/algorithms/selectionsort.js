@@ -22,12 +22,12 @@ async function selectionSort(arr, ticks){
             if (parseInt(arr[j].style.height) < parseInt(arr[min].style.height)) {
                 min = j;
             }
-            await delay(ticks / (arr.length / 5));
+            await delay(ticks / (arr.length / 3));
         }
 
         arr[i].style.backgroundColor = "#E06C75";
         arr[min].style.backgroundColor = "#E06C75";
-        await delay(ticks * 2)
+        await delay(ticks * 4)
         swap(arr, i, min);
         arr[i].style.backgroundColor = "#61AFEF";
         arr[min].style.backgroundColor = "#61AFEF";
