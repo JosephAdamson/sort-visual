@@ -11,7 +11,9 @@ async function quickSortUtil(arr, left, right, ticks){
     if (left < right) {
         const pivotIndex = await partition(arr, left, right, ticks);
         await quickSortUtil(arr, left, pivotIndex - 1, ticks);
+        await ripple(arr.slice(left, right + 1), ticks / 10, "#ff9966");
         await quickSortUtil(arr, pivotIndex + 1, right, ticks);
+        await ripple(arr.slice(left, right + 1), ticks / 10, "#ff9966");
     }
 }
 
@@ -50,7 +52,6 @@ async function partition(arr, left, right, ticks){
     swap(arr, i + 1, right);
     arr[i + 1].style.backgroundColor = "#61AFEF";
     arr[right].style.backgroundColor = "#61AFEF";
-    //await ripple(arr, ticks / 50, "cyan");
     return i + 1;
 }
 
