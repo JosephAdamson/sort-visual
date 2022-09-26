@@ -27,7 +27,7 @@ async function heapSort(arr, ticks) {
         arr[i].style.backgroundColor = "#61AFEF";
         await heapify(arr, i, 0, ticks);
     }
-    await ripple(arr, ticks / 2, "#98C379");
+    await ripple(arr, ticks / 4, "#98C379");
 }
 
 /*

@@ -306,10 +306,12 @@ const toggleModal = () => {
 // execute sort animation event
 playBtn.addEventListener("click",  async () => {
     toggleModal();
+    document.onkeydown = () => {return false;}
     await Promise.all([
         executeAlgo(arrayCanvasOne, algoOptionsOne.value),
         executeAlgo(arrayCanvasTwo, algoOptionsTwo.value)]
         );
+    document.onkeydown = () => {return true}
     toggleModal();
 });
 

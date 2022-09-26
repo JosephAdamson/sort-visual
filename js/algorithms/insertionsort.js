@@ -33,7 +33,7 @@ async function insertionSort(arr, ticks) {
         }
         arr[j + 1].style.height = `${key}px`; 
     }
-    ripple(arr, delay / 2, "#98C379");
+    ripple(arr, delay / 4, "#98C379");
 }
 
 export { insertionSort }

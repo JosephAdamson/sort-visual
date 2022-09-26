@@ -30,7 +30,7 @@ async function gnomeSort(arr, ticks){
             pos--;
         }
     }
-    await ripple(arr, ticks / 2, "#98C379");
+    await ripple(arr, ticks / 4, "#98C379");
 }
 
 export { gnomeSort };

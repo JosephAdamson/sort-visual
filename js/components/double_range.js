@@ -3,7 +3,6 @@
 const BASE_STYLES = Object.freeze({
     sliderTrackColor: "#383e4a",
     sliderFillColor: "#126eba",
-    sliderTrackBorderColor: "#aba9a9",
     sliderBorderRadius:  "5rem",
 });
 
@@ -40,7 +39,6 @@ template.innerHTML = `
         top: 0;
         bottom: 0;
         border-radius: ${BASE_STYLES.sliderBorderRadius};
-        border: 1px solid ${BASE_STYLES.sliderTrackBorderColor};
     }
 
     .slider-track:hover {
