@@ -1,4 +1,4 @@
-import { delay } from "../utils.js";
+import { delay } from "../utils/helper.js";
 import { swap, ripple } from "../sortvisual.js";
 
 /* 
@@ -17,23 +17,23 @@ async function insertionSort(arr, ticks) {
 
     // could start i = 1 but it starts at 0 for the animation
     for (let i = 0; i < n; i++) {
-        arr[i].style.backgroundColor = "purple";
+        arr[i].style.backgroundColor = "#FF9966";
         await delay(ticks);
 
         const key = parseInt(arr[i].style.height);
         let j = i - 1;
 
         while (j >= 0 && parseInt(arr[j].style.height) > key) {
-            arr[j].style.backgroundColor = "red";
+            arr[j].style.backgroundColor = "#E06C75";
             await delay(ticks);
-            arr[j].style.backgroundColor = "cyan";
+            arr[j].style.backgroundColor = "#61AFEF";
 
             arr[j + 1].style.height = arr[j].style.height;
             j--;
         }
         arr[j + 1].style.height = `${key}px`; 
     }
-    ripple(arr, delay / 2, "lime");
+    ripple(arr, delay / 2, "#98C379");
 }
 
 export { insertionSort }

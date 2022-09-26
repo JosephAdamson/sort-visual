@@ -1,13 +1,12 @@
-import { delay } from "../utils.js";
+import { delay } from "../utils/helper.js";
 import { ripple } from "../sortvisual.js";
 
 /*
 Method takes an array of size n and recursively partitions
 it util we get n singleton arrays. Each array is subsequently
 merged with its neighbour. For an array of size n this happens
-log n times with each merge operation costing O(n) for a total
-complexity of O(1) * O(log n) (partitions) + O(n) * (log n) (merges)
-for a total complexity of O(n log n). 
+log n times with each merge operation costing O(n), for a total
+complexity of O(1) * O(log n) (partition) + O(n) (merge) * (log n) = O(n log n). 
 
 @param {Array}  arr   Array of size N.
 @param {Number} ticks Time delay in milliseconds.
@@ -15,7 +14,7 @@ for a total complexity of O(n log n).
 async function mergeSort(arr , ticks){
     await splitHelper(arr, 0, arr.length - 1, ticks);
     await delay(ticks);
-    await ripple(arr, ticks / 2, "lime");
+    await ripple(arr, ticks / 2, "#98C379");
 }
 
 /*
@@ -56,7 +55,7 @@ async function mergeHelper(arr, left, mid, right, ticks) {
 
     let k = left;
 
-    ripple(arr.slice(left, right + 1), ticks, "red");
+    ripple(arr.slice(left, right + 1), ticks, "#E06C75");
     while (i <= mid && j <= right ) {
         
         if (copy[i] <= copy[j]) {
@@ -74,7 +73,7 @@ async function mergeHelper(arr, left, mid, right, ticks) {
         arr[k++].style.height = `${copy[j++]}px`;
     }
     await delay(ticks);
-    ripple(arr.slice(left, right + 1), ticks / 2, "cyan");
+    ripple(arr.slice(left, right + 1), ticks / 2, "#61AFEF");
 
 }
 

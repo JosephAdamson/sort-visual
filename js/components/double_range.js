@@ -1,15 +1,15 @@
 // A stab at a minimal double range slider component
 
 const BASE_STYLES = Object.freeze({
-    sliderTrackColor: "#f5f2f2",
-    sliderFillColor: "#3264fe",
+    sliderTrackColor: "#383e4a",
+    sliderFillColor: "#126eba",
     sliderTrackBorderColor: "#aba9a9",
     sliderBorderRadius:  "5rem",
 });
 
 const SLIDER_PRESETS = Object.freeze({
-    minBound: 1,
-    maxBound: 121,
+    minBound: 0,
+    maxBound: 100,
     minPreset: 10,
     maxPreset: 50
 });
@@ -28,13 +28,13 @@ template.innerHTML = `
         display: inline-block;
         position: relative;
         width: 100%;
-        min-width: 300px;
+        min-width: 200px;
         height: 20px;
     }
 
     .slider-track {
         width: 99%;
-        height: 6px;
+        height: 2px;
         position: absolute;
         margin: auto;
         top: 0;
@@ -74,16 +74,17 @@ template.innerHTML = `
     .slider-container>input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
         margin-top: -6px;
-        height: 1.2em;
-        width: 1.2em;
-        background-color: ${BASE_STYLES.sliderFillColor};
+        height: 1rem;
+        width: 0.6rem;
+        border: 1px solid #686d73;
+        border-radius: 5rem;
+        background-color: #686d73;
         cursor: pointer;
         pointer-events: auto;
-        border-radius: 50%;
     }
 
     .slider-container>input[type="range"]::-webkit-slider-thumb:hover {
-        filter: brightness(0.90);
+        filter: brightness(1.2);
     }
 
     .slider-container>input[type="range"]::-moz-range-thumb {
@@ -98,7 +99,7 @@ template.innerHTML = `
     }
 
     .slider-container>input[type="range"]::-moz-range-thumb:hover {
-        filter: brightness(0.90);
+        filter: brightness(1.2);
     }
 </style>
 
@@ -116,7 +117,7 @@ class DoubleRange extends HTMLElement {
         // encapsulatead part of the web component
         this.shadow = this.attachShadow({mode: "open"});
 
-        //allows us to acces the shadom DOM via the shadow root
+        // allows us to acces the shadom DOM via the shadow root
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
@@ -157,7 +158,7 @@ class DoubleRange extends HTMLElement {
     }
 
     /*
-    HTMLElement life-cycle override method register changes to element attributes, 
+    HTMLElement life-cycle override method register changes to element attributes. 
 
     @param {String} attribute Element attribute to change.
     @param {String} oldValue  Current attribute value.
@@ -205,7 +206,7 @@ class DoubleRange extends HTMLElement {
     }
 
     /*
-    Event listener for cunstom range slider
+    Event listener for custom range slider
 
     @param {Event} e Range slider oninput event.
     */
