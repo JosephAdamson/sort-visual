@@ -1,12 +1,24 @@
 import { delay } from "../utils/helper.js";
 import { swap, ripple } from "../sortvisual.js";
 
-
+/*
+@param {Array}  arr     Array of size N.
+@param {Number} ticks   Time delay in milliseconds. 
+*/
 async function quickSort(arr, ticks) {
     await quickSortUtil(arr, 0, arr.length -1, ticks);
     ripple(arr, ticks / 4, "#98C379");
 }
 
+/*
+Recursively split array into sub arrays using our left-bound, pivot and right
+bound.
+
+@param {Array}  arr     Array of size N.
+@param {Number} left    Lower bound of the sub-array.
+@param {Number} right   Upper bound of the sub-array.
+@param {Number} ticks   Time delay in milliseconds. 
+*/
 async function quickSortUtil(arr, left, right, ticks){
     if (left < right) {
         const pivotIndex = await partition(arr, left, right, ticks);
@@ -17,6 +29,13 @@ async function quickSortUtil(arr, left, right, ticks){
     }
 }
 
+
+/*
+@param {Array}  arr     Array of size N.
+@param {Number} left    Lower bound of the sub-array.
+@param {Number} right   Upper bound of the sub-array.
+@param {Number} ticks   Time delay in milliseconds.  
+*/
 async function partition(arr, left, right, ticks){
     // pick random index between the lower and upper bounds
     // as the pivot, which is then moved to the end of the array

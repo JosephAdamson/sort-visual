@@ -9,8 +9,8 @@ shifted up the array to so the key can be placed before them.
 O(n) for the array traversal * n traversals of n - i for
 a total time complexity of O(n^2).
 
-@param {Array} arr Array of size n
-@param {Number} ticks Time delay in milliseconds.
+@param {Array}  arr     Array of size n
+@param {Number} ticks   Time delay in milliseconds.
 */
 async function insertionSort(arr, ticks) {
     const n = arr.length;

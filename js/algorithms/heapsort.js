@@ -6,7 +6,8 @@ Creates a binary max heap from an array, then performs n
 successive 'delete' operations re-heapifying the sub array each
 time (O(log n)) for a total complexity of O(n log n).
 
-@param {Array} arr An array of size N.
+@param {Array}  arr     An array of size n.
+@param {Number} ticks   Time delay in milliseconds.
 */
 async function heapSort(arr, ticks) {
     const n = arr.length;

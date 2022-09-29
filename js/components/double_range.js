@@ -158,9 +158,9 @@ class DoubleRange extends HTMLElement {
     /*
     HTMLElement life-cycle override method register changes to element attributes. 
 
-    @param {String} attribute Element attribute to change.
-    @param {String} oldValue  Current attribute value.
-    @param {String} newValue  New attribute value to be signed.
+    @param {String} attribute   Element attribute to change.
+    @param {String} oldValue    Current attribute value.
+    @param {String} newValue    New attribute value to be signed.
     */
     attributeChangedCallback(attribute, oldValue, newValue) {
         switch (attribute) {

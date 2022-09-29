@@ -40,8 +40,8 @@ const ALGOS = {
 /*
 Add all the values in a given array of size n as bars to the array canvas.
 
-@param {HTMLElement} canvas An object representing the array canvas.
-@param {Number}      n      The size of the array to be generated.
+@param {HTMLElement}    canvas     An object representing the array canvas.
+@param {Number}         n          The size of the array to be generated.
 */
 const renderArrayCanvas = (options) => {
     if (typeof(options) !== "object") {
@@ -76,7 +76,7 @@ const renderArrayCanvas = (options) => {
 /*
 Allows for in place dynamic resizing of bars on the canvas.
 
-@param {HTMLElement} canvas An object representing the array canvas.
+@param {HTMLElement}    canvas     An object representing the array canvas.
 */
 const alterBarDimensions = (canvas) => {
     if (typeof(canvas) !== "object") {
@@ -98,7 +98,7 @@ const alterBarDimensions = (canvas) => {
 /*
 Get multipliers for dynamic re-sizing of array canvas bars
 
-@param {Number} n Number of bars on the array canvas.
+@param {Number} n   Number of bars on the array canvas.
 */
 const getMultipliers = (n) => {
     let heightMultiplier = 3;
@@ -112,7 +112,7 @@ const getMultipliers = (n) => {
 
 /*
 Clear array canvas. 
-@param  {HTMLElement} canvas An object representing the array canvas.
+@param  {HTMLElement}   canvas      An object representing the array canvas.
 */
 const clearCanvas = (canvas) => {
     if (typeof(canvas) !== "object") {
@@ -126,8 +126,8 @@ const clearCanvas = (canvas) => {
 /*
 Extracts id (integer values) from bar HTMLElements.
 
-@param  {HTMLElement} canvas An object representing the array canvas.
-@return {Number}             An array of integers.
+@param  {HTMLElement} canvas    An object representing the array canvas.
+@return {Number}                An array of integers.
 */
 const canvasToArray = (canvas) => {
     if (typeof(canvas) !== "object") {
@@ -144,7 +144,7 @@ const canvasToArray = (canvas) => {
 /*
 Refresh array canvas.
 
-@param {HTMLElement} canvas An object representing the array canvas.
+@param {HTMLElement} canvas     An object representing the array canvas.
 */
 const refreshArrayCanvas = (options) => {
     if (typeof(options) !== "object") {
@@ -172,8 +172,8 @@ const isColor = (strColor) => {
 /*
 Create color change ripple effect on bars.
 
-@param {Array}  arr   Array to be manipulated.
-@param {Number} ticks The time delay in milliseconds.
+@param {Array}  arr     Array to be manipulated.
+@param {Number} ticks   The time delay in milliseconds.
 */
 const ripple = async (arr, ticks, strColor) => {
     if (isColor(strColor)) {
@@ -189,9 +189,9 @@ const ripple = async (arr, ticks, strColor) => {
 /*
 Swap the heights of two elements in a DOM element array.
 
-@param {Array}  arr Array to be manipulated.
-@param {Number} a   Index of first element to be swapped.
-@param {Number} b   Index of seacond element to be swapped.
+@param {Array}  arr     Array to be manipulated.
+@param {Number} a       Index of first element to be swapped.
+@param {Number} b       Index of seacond element to be swapped.
 */
 const swap = (arr, a, b) => {
     const temp = arr[a].style.height;
@@ -202,8 +202,8 @@ const swap = (arr, a, b) => {
 /*
 Allow multiple sort algorithms to be executed asyncronously.
 
-@param {HTMLElement} canvas An object representing the array canvas. 
-@param {String}      algo   Algorithm to be executed 
+@param {HTMLElement} canvas     An object representing the array canvas. 
+@param {String}      algo       Algorithm to be executed 
 */
 const executeAlgo = async (canvas, algo) => {
     const arrOne = Array.from(document.querySelectorAll(`[arr-id="${canvas.id}"]`));

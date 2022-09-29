@@ -5,8 +5,8 @@ import { swap, ripple } from "../sortvisual.js";
 O(n) for the array traversal * n traversals of n - i for 
 a total time complexity of O(n^2). 
 
-@param {Array}  arr   Array of size N.
-@param {Number} delay Time delay in milliseconds.
+@param {Array}  arr     Array of size N.
+@param {Number} delay   Time delay in milliseconds.
 */
 async function selectionSort(arr, ticks){
     const n = arr.length;

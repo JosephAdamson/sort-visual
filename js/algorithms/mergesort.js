@@ -8,8 +8,8 @@ merged with its neighbour. For an array of size n this happens
 log n times with each merge operation costing O(n), for a total
 complexity of O(1) * O(log n) (partition) + O(n) (merge) * (log n) = O(n log n). 
 
-@param {Array}  arr   Array of size N.
-@param {Number} ticks Time delay in milliseconds.
+@param {Array}  arr     Array of size N.
+@param {Number} ticks   Time delay in milliseconds.
 */
 async function mergeSort(arr , ticks){
     await splitHelper(arr, 0, arr.length - 1, ticks);
@@ -21,10 +21,10 @@ async function mergeSort(arr , ticks){
 Recursively partition initial array into singleton sub arrays, then
 compare and merge. 
 
-@param {Array}  arr   Array of size n.
-@param {Number} left  lower bound.
-@param {Number} right upper bound.
-@param {Number} ticks Time delay in milliseconds.
+@param {Array}  arr     Array of size n.
+@param {Number} left    Lower bound.
+@param {Number} right   Upper bound.
+@param {Number} ticks   Time delay in milliseconds.
 */
 async function splitHelper(arr, left, right, ticks){
     if (left < right) {
@@ -40,10 +40,10 @@ async function splitHelper(arr, left, right, ticks){
 /*
 Compare and merge.
 
-@param {Array}  arr   Array of size n.
-@param {Number} left  lower bound.
-@param {Number} mid   mid point between upper and lower bound.
-@param {Number} right upper bound.
+@param {Array}  arr     Array of size n.
+@param {Number} left    Lower bound.
+@param {Number} mid     Mid point between upper and lower bound.
+@param {Number} right   Upper bound.
 */
 async function mergeHelper(arr, left, mid, right, ticks) {
     
