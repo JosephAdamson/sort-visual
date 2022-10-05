@@ -23,7 +23,7 @@ async function heapSort(arr, ticks) {
     // it with the deepest element lowest element (ith) in the heap
     // can miss the final interation @ index 0
     for (let i = n - 1; i > 0; i--) {
-        await delay(ticks * 2);
+        await delay(ticks * 1.8);
         swap(arr, i, 0);
         arr[i].style.backgroundColor = "#61AFEF";
         await heapify(arr, i, 0, ticks);
@@ -55,8 +55,8 @@ async function heapify(arr, N, i, ticks) {
     }
 
     if (largest !== i) {
+        await delay(ticks * 2.5);
         swap(arr, i, largest);
-        await delay(ticks);
         // re-heapify starting from the largest node.
         await heapify(arr, N, largest);
     }
