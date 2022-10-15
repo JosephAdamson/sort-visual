@@ -160,6 +160,7 @@ Sort-Visual styles
     background-color: var(--clr-grey);
     border: 2px solid var(--clr-grey);
     color: white;
+    min-width: 6rem;
     border-radius: var(--radius-secondary);
 }
 
