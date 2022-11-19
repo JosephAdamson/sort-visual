@@ -154,6 +154,8 @@ Sort-Visual styles
     display: flex;
     gap: var(--gap-primary);
     margin-left: var(--gap-primary);
+    margin-top: 1rem;
+    align-items: center;
 }
 
 .nav-bar__button-container__btn {
@@ -216,7 +218,7 @@ Sort-Visual styles
 .nav-bar__algo_options-container {
     display: flex;
     flex-direction: column;
-    margin-top: var(--gap-primary);
+    margin-top: 2rem;
 }
 
 .algo_options-container__select {
@@ -235,7 +237,7 @@ Sort-Visual styles
     align-items: center;
     margin-left: 2rem;
     margin-right: 1rem;
-    padding-top: 0.8rem;
+    padding-top: 2rem;
 }
 
 .toggle-container__btn {
