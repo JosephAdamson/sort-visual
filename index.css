@@ -20,14 +20,13 @@ Variables
     --background-clr-secondary: #ABB2BF;
     --clr-grey: #686d73;
     --clr-red: #E06C75;
-    --clr-yellow: #E5C07B;
     --clr-orange: #ff9966;
     --clr-green: #98C379;
     --clr-blue: #61AFEF;
     --clr-blue-dark: #126eba;
     --clr-purple: #C678DD;
     --clr-teal: #56B6C2;
-    --focus-color: rgba(39, 191, 245, 0.5);
+    --focus-color: #E5C07B;
     --font-primary: 'Rubik', sans-serif;
     --font-secondary: 'Source Code Pro', monospace;
 }
