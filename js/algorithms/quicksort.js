@@ -23,9 +23,7 @@ async function quickSortUtil(arr, left, right, ticks){
     if (left < right) {
         const pivotIndex = await partition(arr, left, right, ticks);
         await quickSortUtil(arr, left, pivotIndex - 1, ticks);
-        await ripple(arr.slice(left, right + 1), ticks / 10, "#ff9966");
         await quickSortUtil(arr, pivotIndex + 1, right, ticks);
-        await ripple(arr.slice(left, right + 1), ticks / 10, "#ff9966");
     }
 }
 
