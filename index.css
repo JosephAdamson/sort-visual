@@ -153,7 +153,7 @@ Sort-Visual styles
     display: flex;
     gap: var(--gap-primary);
     margin-left: var(--gap-primary);
-    margin-top: 1rem;
+    margin-top: 3rem;
     align-items: center;
 }
 
@@ -311,8 +311,12 @@ Sort-Visual styles
     background-color: var(--overlay-clr);
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1280px) {
     .nav-bar {
         flex-direction: row;
+    }
+
+    .nav-bar__button-container {
+        margin-top: 1rem;
     }
 }
